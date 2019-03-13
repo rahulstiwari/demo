@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javascript</title>
+	<meta charset="utf-8">
+	<style >
+		.one{
+			color: red;
+			font-size: 20px;
+			background: orange;
+			font-family: cursive;
+		}
+		.two{
+			color: blue;
+			font-size: 30px;
+			background: red;
+			font-family: calibri;
+		}
+
+
+	</style>
+</head>
+<body>
+	<p id="mypara" onmouseover="this.style.color='blue'" onmouseout="document.getElementsByTagName('p')[0].style.color='red'">Hello I am JAVAScript Page</p>
+	<p id="rsp"></p>
+
+	<button onclick="document.getElementsByTagName('p')[0].style.color='blue'">Click Me</button>
+	<button onclick="change_class('one')" >change class one</button>
+	<button onclick="change_class('two')" >change class two</button>
+	<button onclick="login_me('good')" >Go AJAX good</button>
+	<button onclick="login_me('bad')" >Go AJAX bad</button>
+
+	<script>
+		function change_class(name){
+			document.getElementById('mypara').className=name;
+		}
+	</script>
+
+
+<script>
+function getAjaxVariable()
+ {
+	 var xmlhttp;
+	if(window.XMLHttpRequest)
+	  {// code for IE7+, Firefox, Chrome, Opera, Safari
+	    xmlhttp=new XMLHttpRequest();
+	  }
+	else
+	  {// code for IE6, IE5
+	    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	  }
+	  
+	  return xmlhttp;
+ }
+	
+	
+function login_me(mood)
+{
+	 var xmlhttp=getAjaxVariable();
+	 
+	xmlhttp.onreadystatechange=function()
+	  {
+		  if(xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				  if(xmlhttp.responseText=='<span style="color:gray">Login Successful</span>')
+					{
+						document.getElementById("rsp").innerHTML=xmlhttp.responseText;
+					   // window.location=('');
+					}	
+					else
+					{
+					  document.getElementById("rsp").innerHTML=xmlhttp.responseText;
+					}	
+			}
+	  }
+	var ques = 'how are you';
+	
+	xmlhttp.open("POST","ajax.php",true);
+	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	
+	xmlhttp.send("ques="+ques+
+				"&mood="+mood+
+				"&login_me=1"
+				);
+}
+
+	</script>
+
+</body>
+</html>

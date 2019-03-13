@@ -1,0 +1,14 @@
+RewriteEngine On
+
+RewriteEngine On
+RewriteRule ^(.*)\.html$ $1.php [L]
+
+
+#Product Category Rule
+RewriteRule ^/?search search.php [L]
+RewriteRule ^/?category/(.*).php$ category.php?id=$1 [L]
+RewriteRule ^/?products/(.*).php$ product.php?id=$1 [L]
+RewriteRule ^/?main-product/(.*).php$ productdetail.php?id=$1 [L]
+RewriteRule ^/?blogs/(.*).php$ blogdetail.php?id=$1 [L]
+
+RewriteRule ^/?web-image/(.*)$ upload/$1 [L]
